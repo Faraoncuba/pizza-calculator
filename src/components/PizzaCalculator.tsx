@@ -4,15 +4,14 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Minus, Plus, Download } from "lucide-react";
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
-  SelectValue
-} from "@/components/ui/select"
+  SelectValue,
+  SelectContent,
+  SelectItem
+} from "@/components/ui/select";
+import { Minus, Plus, Download } from "lucide-react";
 
 export default function PizzaCalculator() {
   const [pizzas, setPizzas] = useState(3);
@@ -102,27 +101,22 @@ export default function PizzaCalculator() {
 
           {usarPrefermento && (
             <>
-              <div className="mb-4">
+              <div className="mb-4 col-span-1 sm:col-span-2">
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                  <SelectTrigger
-                    className="w-full border px-3 py-2 rounded-md text-sm bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue
-                      placeholder="Selecciona el tipo"
-                      className="text-neutral-800"
-                    />
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue placeholder="Selecciona el tipo" />
                   </SelectTrigger>
-                    <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
-                      <SelectItem value="biga" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                        Biga
-                      </SelectItem>
-                      <SelectItem value="poolish" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                        Poolish
-                      </SelectItem>
-                    </SelectContent>
+                  <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
+                    <SelectItem value="biga" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Biga
+                    </SelectItem>
+                    <SelectItem value="poolish" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Poolish
+                    </SelectItem>
+                  </SelectContent>
                 </Select>
               </div>
-
 
               {tipoPrefermento === "biga" && (
                 <div className="col-span-2 text-sm text-yellow-700 italic">
@@ -136,27 +130,22 @@ export default function PizzaCalculator() {
                 </div>
               )}
 
-                <div className="mb-4">
-                  <Label className="block mb-1">Método de entrada:</Label>
-                  <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                  <SelectTrigger
-                    className="w-full border px-3 py-2 rounded-md text-sm bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue
-                      placeholder="Selecciona el tipo"
-                      className="text-neutral-800"
-                    />
+              <div className="mb-4 col-span-1 sm:col-span-2">
+                <Label className="block mb-1">Método de entrada:</Label>
+                <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue placeholder="Selecciona el método" />
                   </SelectTrigger>
-                    <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
-                      <SelectItem value="porcentaje" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                        Porcentaje de harina
-                      </SelectItem>
-                      <SelectItem value="nominal" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                        Cantidad de harina (g)
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
+                  <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
+                    <SelectItem value="porcentaje" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Porcentaje de harina
+                    </SelectItem>
+                    <SelectItem value="nominal" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Cantidad de harina (g)
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
               {prefermentoModo === "porcentaje"
                 ? renderStepper("% de harina en prefermento", prefermentoPorcentaje, setPrefermentoPorcentaje, 1, 10, 100)
@@ -169,7 +158,7 @@ export default function PizzaCalculator() {
 
               {excedeLimitePoolish && (
                 <div className="col-span-2 text-sm text-red-700 italic">
-                  ⚠️ Atención: El poolish no puede tener más harina que la cantidad total de agua disponible ({Math.round(agua)} g).
+                  ⚠️ Atención: El poolish no debería tener más harina que la cantidad total de agua disponible ({Math.round(agua)} g).
                 </div>
               )}
 
