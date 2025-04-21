@@ -100,8 +100,8 @@ export default function PizzaCalculator() {
           </div>
 
           {usarPrefermento && (
-            <>
-              <div className="mb-4 col-span-1 sm:col-span-2">
+            <div className="col-span-1 sm:col-span-2 space-y-4">
+              <div>
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
                   <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -119,18 +119,18 @@ export default function PizzaCalculator() {
               </div>
 
               {tipoPrefermento === "biga" && (
-                <div className="col-span-2 text-sm text-yellow-700 italic">
+                <div className="text-sm text-yellow-700 italic">
                   Nota: La biga requiere amasadora para integrarse correctamente.
                 </div>
               )}
 
               {tipoPrefermento === "poolish" && (
-                <div className="col-span-2 text-sm text-blue-800 italic">
+                <div className="text-sm text-blue-800 italic">
                   Recomendación: El poolish no debe superar el total de agua disponible, ya que tiene hidratación 100%.
                 </div>
               )}
 
-              <div className="mb-4 col-span-1 sm:col-span-2">
+              <div>
                 <Label className="block mb-1">Método de entrada:</Label>
                 <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
                   <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -157,12 +157,12 @@ export default function PizzaCalculator() {
                 )}
 
               {excedeLimitePoolish && (
-                <div className="col-span-2 text-sm text-red-700 italic">
+                <div className="text-sm text-red-700 italic">
                   ⚠️ Atención: El poolish no debería tener más harina que la cantidad total de agua disponible ({Math.round(agua)} g).
                 </div>
               )}
 
-              <div className="col-span-2 border-t pt-4 mt-2 space-y-1">
+              <div className="border-t pt-4 mt-2 space-y-1">
                 <p><strong>Prefermento ({tipoPrefermento}):</strong></p>
                 <p>Harina: {Math.round(harinaPrefermento)} g</p>
                 <p>Agua: {Math.round(aguaPrefermento)} g</p>
@@ -170,7 +170,7 @@ export default function PizzaCalculator() {
                 <p>Harina restante: {Math.round(harinaFinal)} g</p>
                 <p>Agua restante: {Math.round(aguaFinal)} g</p>
               </div>
-            </>
+            </div>
           )}
 
           <div className="col-span-1 sm:col-span-2 border-t pt-4 mt-4 space-y-1 bg-[#fff1dc] p-4 rounded-xl">
