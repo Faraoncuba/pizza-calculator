@@ -103,17 +103,15 @@ export default function PizzaCalculator() {
             <div className="col-span-1 sm:col-span-2 space-y-4">
               <div>
                 <Label className="block mb-1">Tipo de prefermento:</Label>
-                <Select value={tipoPrefermento} defaultValue="poolish" onValueChange={setTipoPrefermento}>
-                  <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue placeholder="Selecciona el tipo" />
+                <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue>
+                      {tipoPrefermento === "biga" ? "Biga" : "Poolish"}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
-                    <SelectItem value="biga" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                      Biga
-                    </SelectItem>
-                    <SelectItem value="poolish" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                      Poolish
-                    </SelectItem>
+                    <SelectItem value="biga">Biga</SelectItem>
+                    <SelectItem value="poolish">Poolish</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -132,17 +130,15 @@ export default function PizzaCalculator() {
 
               <div>
                 <Label className="block mb-1">Método de entrada:</Label>
-                <Select value={prefermentoModo} defaultValue="porcentaje" onValueChange={setPrefermentoModo}>
-                  <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue placeholder="Selecciona el método" />
+                <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue>
+                      {prefermentoModo === "porcentaje" ? "Porcentaje de harina" : "Cantidad de harina (g)"}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
-                    <SelectItem value="porcentaje" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                      Porcentaje de harina
-                    </SelectItem>
-                    <SelectItem value="nominal" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                      Cantidad de harina (g)
-                    </SelectItem>
+                    <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
+                    <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
