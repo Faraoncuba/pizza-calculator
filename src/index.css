@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.select-value span {
+  color: #1f2937 !important; /* text-neutral-800 */
+}
