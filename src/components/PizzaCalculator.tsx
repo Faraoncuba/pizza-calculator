@@ -95,14 +95,16 @@ export default function PizzaCalculator() {
 
           {usarPrefermento && (
             <>
-              <Label>Tipo de prefermento:</Label>
-              <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                <SelectTrigger><SelectValue placeholder="Tipo" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="biga">Biga</SelectItem>
-                  <SelectItem value="poolish">Poolish</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="mb-4">
+                <Label className="block mb-1">Tipo de prefermento:</Label>
+                <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
+                  <SelectTrigger><SelectValue placeholder="Tipo" /></SelectTrigger>
+                   <SelectContent position="popper">
+                    <SelectItem value="biga">Biga</SelectItem>
+                    <SelectItem value="poolish">Poolish</SelectItem>
+                  </SelectContent>
+                </Select>
+                </div>
 
               {tipoPrefermento === "biga" && (
                 <div className="col-span-2 text-sm text-yellow-700 italic">
@@ -122,7 +124,7 @@ export default function PizzaCalculator() {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Modo" />
                   </SelectTrigger>
-                  <SelectContent>
+                   <SelectContent position="popper">
                     <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
                     <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
                   </SelectContent>
