@@ -105,15 +105,22 @@ export default function PizzaCalculator() {
               <div className="mb-4">
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue placeholder="Tipo de prefermento" />
+                  <SelectTrigger
+                    className="w-full border px-3 py-2 rounded-md text-sm text-neutral-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <SelectValue placeholder="Selecciona el tipo" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border rounded-md shadow-md">
-                    <SelectItem value="biga">Biga</SelectItem>
-                    <SelectItem value="poolish">Poolish</SelectItem>
+                  <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
+                    <SelectItem value="biga" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Biga
+                    </SelectItem>
+                    <SelectItem value="poolish" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                      Poolish
+                    </SelectItem>
                   </SelectContent>
                 </Select>
-                </div>
+              </div>
+
 
               {tipoPrefermento === "biga" && (
                 <div className="col-span-2 text-sm text-yellow-700 italic">
@@ -127,18 +134,25 @@ export default function PizzaCalculator() {
                 </div>
               )}
 
-              <div className="mb-4">
-                <Label className="block mb-1">Método de entrada:</Label>
-                <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue placeholder="Modo" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border rounded-md shadow-md">
-                    <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
-                    <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                <div className="mb-4">
+                  <Label className="block mb-1">Método de entrada:</Label>
+                  <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
+                    <SelectTrigger
+                      className="w-full border px-3 py-2 rounded-md text-sm text-neutral-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <SelectValue placeholder="Selecciona el método" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
+                      <SelectItem value="porcentaje" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                        Porcentaje de harina
+                      </SelectItem>
+                      <SelectItem value="nominal" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
+                        Cantidad de harina (g)
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
 
               {prefermentoModo === "porcentaje"
                 ? renderStepper("% de harina en prefermento", prefermentoPorcentaje, setPrefermentoPorcentaje, 1, 10, 100)
