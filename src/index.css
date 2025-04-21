@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.select-value span {
-  color: #1f2937 !important; /* text-neutral-800 */
+.select-trigger span[data-state='checked'],
+.select-trigger span[data-state='open'],
+.select-trigger span[data-slot='selected'] {
+  color: #1f2937; /* Tailwind text-neutral-800 */
 }
