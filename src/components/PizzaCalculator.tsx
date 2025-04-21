@@ -116,14 +116,18 @@ export default function PizzaCalculator() {
                 </div>
               )}
 
-              <Label>Método de entrada:</Label>
-              <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                <SelectTrigger><SelectValue placeholder="Modo" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
-                  <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="mb-4">
+                <Label className="block mb-1">Método de entrada:</Label>
+                <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Modo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
+                    <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
               {prefermentoModo === "porcentaje"
                 ? renderStepper("% de harina en prefermento", prefermentoPorcentaje, setPrefermentoPorcentaje, 1, 10, 100)
