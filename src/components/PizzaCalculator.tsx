@@ -6,6 +6,13 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Minus, Plus, Download } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select"
 
 export default function PizzaCalculator() {
   const [pizzas, setPizzas] = useState(3);
@@ -98,8 +105,10 @@ export default function PizzaCalculator() {
               <div className="mb-4">
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                  <SelectTrigger><SelectValue placeholder="Tipo" /></SelectTrigger>
-                   <SelectContent position="popper">
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue placeholder="Tipo de prefermento" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border rounded-md shadow-md">
                     <SelectItem value="biga">Biga</SelectItem>
                     <SelectItem value="poolish">Poolish</SelectItem>
                   </SelectContent>
@@ -121,10 +130,10 @@ export default function PizzaCalculator() {
               <div className="mb-4">
                 <Label className="block mb-1">Método de entrada:</Label>
                 <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Modo" />
                   </SelectTrigger>
-                   <SelectContent position="popper">
+                  <SelectContent className="bg-white border rounded-md shadow-md">
                     <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
                     <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
                   </SelectContent>
