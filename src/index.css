@@ -2,7 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Forzar color del texto seleccionado en SelectTrigger */
-.select-trigger span {
-  color: #1f2937 !important; /* text-neutral-800 */
+/* ==== Estilos para que los valores seleccionados sean visibles ==== */
+.select-trigger span[data-slot='selected'],
+.select-trigger span[data-radix-select-value] {
+  color: #1f2937 !important; /* Tailwind text-neutral-800 */
+}
+
+/* Estilo para texto del trigger cuando está seleccionado (fallback) */
+.select-trigger {
+  color: #1f2937 !important;
+}
+
+/* Ajustes opcionales para uniformidad visual */
+.select-trigger svg {
+  color: #6b7280; /* Tailwind text-gray-500 */
+}
+
+.select-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-blue-500 */
 }
