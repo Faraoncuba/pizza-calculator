@@ -106,8 +106,11 @@ export default function PizzaCalculator() {
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
                   <SelectTrigger
-                     className="w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-800 placeholder:text-neutral-500">
-                    <SelectValue placeholder="Selecciona el tipo" />
+                    className="w-full border px-3 py-2 rounded-md text-sm bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue
+                      placeholder="Selecciona el tipo"
+                      className="text-neutral-800"
+                    />
                   </SelectTrigger>
                     <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
                       <SelectItem value="biga" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
@@ -136,10 +139,13 @@ export default function PizzaCalculator() {
                 <div className="mb-4">
                   <Label className="block mb-1">Método de entrada:</Label>
                   <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                    <SelectTrigger
-                      className="w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-800 placeholder:text-neutral-500">
-                      <SelectValue placeholder="Selecciona el método" />
-                    </SelectTrigger>
+                  <SelectTrigger
+                    className="w-full border px-3 py-2 rounded-md text-sm bg-white text-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue
+                      placeholder="Selecciona el tipo"
+                      className="text-neutral-800"
+                    />
+                  </SelectTrigger>
                     <SelectContent className="bg-white text-neutral-800 border border-gray-200 rounded-md shadow-md">
                       <SelectItem value="porcentaje" className="px-3 py-2 cursor-pointer hover:bg-gray-100">
                         Porcentaje de harina
