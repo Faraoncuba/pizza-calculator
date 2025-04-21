@@ -104,7 +104,7 @@ export default function PizzaCalculator() {
               <div className="mb-4 col-span-1 sm:col-span-2">
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" text-black [&_[data-slot=selected]]:text-black">
+                  <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Selecciona el tipo" />
                   </SelectTrigger>
                   <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
@@ -133,7 +133,7 @@ export default function PizzaCalculator() {
               <div className="mb-4 col-span-1 sm:col-span-2">
                 <Label className="block mb-1">Método de entrada:</Label>
                 <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" text-black [&_[data-slot=selected]]:text-black">
+                  <SelectTrigger className="select-trigger w-full border px-3 py-2 rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Selecciona el método" />
                   </SelectTrigger>
                   <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
