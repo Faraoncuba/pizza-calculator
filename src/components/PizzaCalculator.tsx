@@ -25,8 +25,8 @@ export default function PizzaCalculator() {
   const [mostrarAvanzado, setMostrarAvanzado] = useState(false);
   const [tipoPrefermento, setTipoPrefermento] = useState("poolish");
   const [prefermentoModo, setPrefermentoModo] = useState("porcentaje");
-  const [prefermentoPorcentaje, setPrefermentoPorcentaje] = useState(50);
-  const [prefermentoHarina, setPrefermentoHarina] = useState(0);
+  const [prefermentoPorcentaje, setPrefermentoPorcentaje] = useState("50");
+  const [prefermentoHarina, setPrefermentoHarina] = useState("0");
 
   const parseOrZero = (val) => parseFloat(val) || 0;
   const masaTotal = parseOrZero(pizzas) * parseOrZero(pesoBola);
@@ -38,7 +38,7 @@ export default function PizzaCalculator() {
   const levaduraFresca = harina * (levadura / 100);
   const levaduraSeca = levaduraFresca / 3;
 
-  const harinaPrefermento = prefermentoModo === "porcentaje" ? harina * (prefermentoPorcentaje / 100) : prefermentoHarina;
+  const harinaPrefermento = prefermentoModo === "porcentaje" ? harina * (parseOrZero(prefermentoPorcentaje) / 100) : parseOrZero(prefermentoHarina);
   const aguaPrefermento = tipoPrefermento === "biga" ? harinaPrefermento * 0.5 : harinaPrefermento;
   const levaduraPrefermento = harinaPrefermento * 0.002;
   const harinaFinal = harina - harinaPrefermento;
@@ -76,20 +76,10 @@ export default function PizzaCalculator() {
           <h1 className="col-span-1 sm:col-span-2 text-3xl font-extrabold text-center text-[#9c4221]">🍕 Calculadora de Pizza</h1>
 
           <Label>Cuántas pizzas:</Label>
-          <Input
-            type="number"
-            value={pizzas}
-            onChange={handleTextInput(setPizzas)}
-            inputMode="numeric"
-          />
+          <Input type="number" value={pizzas} onChange={handleTextInput(setPizzas)} inputMode="numeric" />
 
           <Label>Peso por bola (g):</Label>
-          <Input
-            type="number"
-            value={pesoBola}
-            onChange={handleTextInput(setPesoBola)}
-            inputMode="numeric"
-          />
+          <Input type="number" value={pesoBola} onChange={handleTextInput(setPesoBola)} inputMode="numeric" />
 
           {renderStepper("Hidratación", hidratacion, setHidratacion, 1, 50, 80)}
 
@@ -157,11 +147,16 @@ export default function PizzaCalculator() {
               </div>
 
               {prefermentoModo === "porcentaje"
-                ? renderStepper("% de harina en prefermento", prefermentoPorcentaje, setPrefermentoPorcentaje, 1, 10, 100)
+                ? renderStepper("% de harina en prefermento", parseFloat(prefermentoPorcentaje), (val) => setPrefermentoPorcentaje(val.toString()), 1, 10, 100)
                 : (
                   <>
                     <Label>Harina en prefermento (g):</Label>
-                    <Input type="number" value={prefermentoHarina} onChange={(e) => setPrefermentoHarina(parseFloat(e.target.value) || 0)} />
+                    <Input
+                      type="number"
+                      value={prefermentoHarina}
+                      onChange={handleTextInput(setPrefermentoHarina)}
+                      inputMode="numeric"
+                    />
                   </>
                 )}
 
