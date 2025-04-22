@@ -5,13 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Download } from "lucide-react";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem
-} from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function PizzaCalculator() {
   const [pizzas, setPizzas] = useState("3");
@@ -106,17 +100,16 @@ export default function PizzaCalculator() {
             <div className="col-span-1 sm:col-span-2 space-y-4">
               <div>
                 <Label className="block mb-1">Tipo de prefermento:</Label>
-                <Select value={tipoPrefermento} onValueChange={setTipoPrefermento}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue>
-                      {tipoPrefermento === "biga" ? "Biga" : "Poolish"}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
-                    <SelectItem value="biga">Biga</SelectItem>
-                    <SelectItem value="poolish">Poolish</SelectItem>
-                  </SelectContent>
-                </Select>
+                <RadioGroup defaultValue={tipoPrefermento} onValueChange={setTipoPrefermento} className="flex gap-4">
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="biga" id="biga" />
+                    <Label htmlFor="biga">Biga</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="poolish" id="poolish" />
+                    <Label htmlFor="poolish">Poolish</Label>
+                  </div>
+                </RadioGroup>
               </div>
 
               {tipoPrefermento === "biga" && (
@@ -133,17 +126,16 @@ export default function PizzaCalculator() {
 
               <div>
                 <Label className="block mb-1">Método de entrada:</Label>
-                <Select value={prefermentoModo} onValueChange={setPrefermentoModo}>
-                  <SelectTrigger className="w-full border px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <SelectValue>
-                      {prefermentoModo === "porcentaje" ? "Porcentaje de harina" : "Cantidad de harina (g)"}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent className="bg-white text-black border border-gray-200 rounded-md shadow-md">
-                    <SelectItem value="porcentaje">Porcentaje de harina</SelectItem>
-                    <SelectItem value="nominal">Cantidad de harina (g)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <RadioGroup defaultValue={prefermentoModo} onValueChange={setPrefermentoModo} className="flex gap-4">
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="porcentaje" id="porcentaje" />
+                    <Label htmlFor="porcentaje">Porcentaje</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="nominal" id="nominal" />
+                    <Label htmlFor="nominal">Cantidad (g)</Label>
+                  </div>
+                </RadioGroup>
               </div>
 
               {prefermentoModo === "porcentaje"
