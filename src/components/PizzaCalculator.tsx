@@ -40,7 +40,12 @@ export default function PizzaCalculator() {
   const excedeLimitePoolish = tipoPrefermento === "poolish" && harinaPrefermento > agua;
 
   const handleExport = () => {
-    const contenido = `Masa total: ${Math.round(masaTotal)} g\nHarina total: ${Math.round(harina)} g\nAgua total: ${Math.round(agua)} g\nSal (${sal}%): ${salGr} g\nAceite (${aceite}%): ${aceiteGr} g\nAzúcar (${azucar}%): ${azucarGr} g (opcional)\nLevadura fresca (${levadura}%): ${levaduraFresca.toFixed(1)} g\nLevadura seca (1/3): ${levaduraSeca.toFixed(1)} g`;
+    let contenido = `Masa total: ${Math.round(masaTotal)} g\nHarina total: ${Math.round(harina)} g\nAgua total: ${Math.round(agua)} g\nSal (${sal}%): ${salGr} g\nAceite (${aceite}%): ${aceiteGr} g\nAzúcar (${azucar}%): ${azucarGr} g (opcional)\nLevadura fresca (${levadura}%): ${levaduraFresca.toFixed(1)} g\nLevadura seca (1/3): ${levaduraSeca.toFixed(1)} g`;
+
+    if (usarPrefermento) {
+      contenido += `\n\nPrefermento (${tipoPrefermento}):\nHarina: ${Math.round(harinaPrefermento)} g\nAgua: ${Math.round(aguaPrefermento)} g\nLevadura fresca (0.2%): ${levaduraPrefermento.toFixed(1)} g\nHarina restante: ${Math.round(harinaFinal)} g\nAgua restante: ${Math.round(aguaFinal)} g`;
+    }
+
     const blob = new Blob([contenido], { type: "text/plain;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
