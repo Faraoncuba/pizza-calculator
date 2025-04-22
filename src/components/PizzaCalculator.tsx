@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { Minus, Plus, Download } from "lucide-react";
 import {
   Select,
   SelectTrigger,
@@ -11,11 +12,10 @@ import {
   SelectContent,
   SelectItem
 } from "@/components/ui/select";
-import { Minus, Plus, Download } from "lucide-react";
 
 export default function PizzaCalculator() {
-  const [pizzas, setPizzas] = useState(3);
-  const [pesoBola, setPesoBola] = useState(250);
+  const [pizzas, setPizzas] = useState("3");
+  const [pesoBola, setPesoBola] = useState("250");
   const [hidratacion, setHidratacion] = useState(65);
   const [sal, setSal] = useState(2);
   const [aceite, setAceite] = useState(2);
@@ -28,7 +28,8 @@ export default function PizzaCalculator() {
   const [prefermentoPorcentaje, setPrefermentoPorcentaje] = useState(50);
   const [prefermentoHarina, setPrefermentoHarina] = useState(0);
 
-  const masaTotal = pizzas * pesoBola;
+  const parseOrZero = (val) => parseFloat(val) || 0;
+  const masaTotal = parseOrZero(pizzas) * parseOrZero(pesoBola);
   const harina = masaTotal / (1 + hidratacion / 100 + sal / 100 + aceite / 100 + azucar / 100);
   const agua = harina * (hidratacion / 100);
   const salGr = Math.round(harina * (sal / 100));
@@ -55,6 +56,8 @@ export default function PizzaCalculator() {
     document.body.removeChild(link);
   };
 
+  const handleTextInput = (setter) => (e) => setter(e.target.value);
+
   const renderStepper = (label, value, setter, step = 1, min = 0, max = 100) => (
     <div className="col-span-1 sm:col-span-2">
       <Label className="block mb-1">{label}: {value}%</Label>
@@ -73,10 +76,20 @@ export default function PizzaCalculator() {
           <h1 className="col-span-1 sm:col-span-2 text-3xl font-extrabold text-center text-[#9c4221]">🍕 Calculadora de Pizza</h1>
 
           <Label>Cuántas pizzas:</Label>
-          <Input type="number" value={pizzas} onChange={(e) => setPizzas(Number(e.target.value))} />
+          <Input
+            type="number"
+            value={pizzas}
+            onChange={handleTextInput(setPizzas)}
+            inputMode="numeric"
+          />
 
           <Label>Peso por bola (g):</Label>
-          <Input type="number" value={pesoBola} onChange={(e) => setPesoBola(Number(e.target.value))} />
+          <Input
+            type="number"
+            value={pesoBola}
+            onChange={handleTextInput(setPesoBola)}
+            inputMode="numeric"
+          />
 
           {renderStepper("Hidratación", hidratacion, setHidratacion, 1, 50, 80)}
 
@@ -148,7 +161,7 @@ export default function PizzaCalculator() {
                 : (
                   <>
                     <Label>Harina en prefermento (g):</Label>
-                    <Input type="number" value={prefermentoHarina} onChange={(e) => setPrefermentoHarina(Number(e.target.value))} />
+                    <Input type="number" value={prefermentoHarina} onChange={(e) => setPrefermentoHarina(parseFloat(e.target.value) || 0)} />
                   </>
                 )}
 
@@ -180,7 +193,9 @@ export default function PizzaCalculator() {
             <p>Levadura fresca ({levadura}%): {levaduraFresca.toFixed(1)} g</p>
             <p>Levadura seca (1/3): {levaduraSeca.toFixed(1)} g</p>
             <div className="pt-4">
-              <Button onClick={handleExport} className="flex gap-2 items-center bg-green-600 hover:bg-green-700 text-white"><Download className="w-4 h-4" /> Exportar a TXT</Button>
+              <Button onClick={handleExport} className="flex gap-2 items-center bg-green-600 hover:bg-green-700 text-white">
+                <Download className="w-4 h-4" /> Exportar a TXT
+              </Button>
             </div>
           </div>
         </CardContent>
