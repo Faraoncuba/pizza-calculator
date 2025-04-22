@@ -100,13 +100,13 @@ export default function PizzaCalculator() {
             <div className="col-span-1 sm:col-span-2 space-y-4">
               <div>
                 <Label className="block mb-1">Tipo de prefermento:</Label>
-                <RadioGroup defaultValue={tipoPrefermento} onValueChange={setTipoPrefermento} className="flex gap-4">
+                <RadioGroup value={tipoPrefermento} onValueChange={setTipoPrefermento} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="biga" id="biga" />
+                    <RadioGroupItem value="biga" id="biga" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus:ring-2 focus:ring-orange-500" />
                     <Label htmlFor="biga">Biga</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="poolish" id="poolish" />
+                    <RadioGroupItem value="poolish" id="poolish" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus:ring-2 focus:ring-orange-500" />
                     <Label htmlFor="poolish">Poolish</Label>
                   </div>
                 </RadioGroup>
@@ -126,13 +126,13 @@ export default function PizzaCalculator() {
 
               <div>
                 <Label className="block mb-1">Método de entrada:</Label>
-                <RadioGroup defaultValue={prefermentoModo} onValueChange={setPrefermentoModo} className="flex gap-4">
+                <RadioGroup value={prefermentoModo} onValueChange={setPrefermentoModo} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="porcentaje" id="porcentaje" />
+                    <RadioGroupItem value="porcentaje" id="porcentaje" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus:ring-2 focus:ring-orange-500" />
                     <Label htmlFor="porcentaje">Porcentaje</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="nominal" id="nominal" />
+                    <RadioGroupItem value="nominal" id="nominal" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus:ring-2 focus:ring-orange-500" />
                     <Label htmlFor="nominal">Cantidad (g)</Label>
                   </div>
                 </RadioGroup>
