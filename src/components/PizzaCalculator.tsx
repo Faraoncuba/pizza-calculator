@@ -70,10 +70,10 @@ export default function PizzaCalculator() {
           <h1 className="col-span-1 sm:col-span-2 text-3xl font-extrabold text-center text-[#9c4221]">🍕 Calculadora de Pizza</h1>
 
           <Label>Cuántas pizzas:</Label>
-          <Input type="number" value={pizzas} onChange={handleTextInput(setPizzas)} inputMode="numeric" min="1" />
+          <Input type="number" value={pizzas} onChange={handleTextInput(setPizzas)} inputMode="numeric" min="1" placeholder="0" />
 
           <Label>Peso por bola (g):</Label>
-          <Input type="number" value={pesoBola} onChange={handleTextInput(setPesoBola)} inputMode="numeric" min="1" />
+          <Input type="number" value={pesoBola} onChange={handleTextInput(setPesoBola)} inputMode="numeric" min="1" placeholder="0" />
 
           {renderStepper("Hidratación", hidratacion, setHidratacion, 1, 50, 80)}
 
@@ -102,11 +102,11 @@ export default function PizzaCalculator() {
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <RadioGroup value={tipoPrefermento} onValueChange={setTipoPrefermento} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="biga" id="biga" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                    <RadioGroupItem value="biga" id="biga" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
                     <Label htmlFor="biga">Biga</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="poolish" id="poolish" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                    <RadioGroupItem value="poolish" id="poolish" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
                     <Label htmlFor="poolish">Poolish</Label>
                   </div>
                 </RadioGroup>
@@ -128,11 +128,11 @@ export default function PizzaCalculator() {
                 <Label className="block mb-1">Método de entrada:</Label>
                 <RadioGroup value={prefermentoModo} onValueChange={setPrefermentoModo} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="porcentaje" id="porcentaje" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                    <RadioGroupItem value="porcentaje" id="porcentaje" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
                     <Label htmlFor="porcentaje">Porcentaje</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="nominal" id="nominal" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                    <RadioGroupItem value="nominal" id="nominal" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
                     <Label htmlFor="nominal">Cantidad (g)</Label>
                   </div>
                 </RadioGroup>
@@ -149,6 +149,7 @@ export default function PizzaCalculator() {
                       onChange={handleTextInput(setPrefermentoHarina)}
                       inputMode="numeric"
                       min="1"
+                      placeholder="0"
                     />
                   </>
                 )}
