@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
@@ -107,11 +107,11 @@ export default function PizzaCalculator() {
                 <Label className="block mb-1">Tipo de prefermento:</Label>
                 <RadioGroup value={tipoPrefermento} onValueChange={setTipoPrefermento} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="biga" id="biga" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
+                    <RadioGroupItem value="biga" id="biga" />
                     <Label htmlFor="biga">Biga</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="poolish" id="poolish" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
+                    <RadioGroupItem value="poolish" id="poolish" />
                     <Label htmlFor="poolish">Poolish</Label>
                   </div>
                 </RadioGroup>
@@ -133,11 +133,11 @@ export default function PizzaCalculator() {
                 <Label className="block mb-1">Método de entrada:</Label>
                 <RadioGroup value={prefermentoModo} onValueChange={setPrefermentoModo} className="flex gap-6">
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="porcentaje" id="porcentaje" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
+                    <RadioGroupItem value="porcentaje" id="porcentaje" />
                     <Label htmlFor="porcentaje">Porcentaje</Label>
                   </div>
                   <div className="flex items-center gap-2">
-                    <RadioGroupItem value="nominal" id="nominal" className="h-4 w-4 rounded-full border border-gray-400 text-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600" />
+                    <RadioGroupItem value="nominal" id="nominal" />
                     <Label htmlFor="nominal">Cantidad (g)</Label>
                   </div>
                 </RadioGroup>
@@ -194,6 +194,36 @@ export default function PizzaCalculator() {
           </div>
         </CardContent>
       </Card>
+      <InstallButton />
     </div>
   );
+}
+
+// Componente separado para la instalación de la PWA
+function InstallButton() {
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => {
+        setDeferredPrompt(null);
+      });
+    }
+  };
+
+  return deferredPrompt ? (
+    <button onClick={handleInstallClick} className="mt-4 bg-blue-600 text-white px-4 py-2 rounded">
+      Instalar app
+    </button>
+  ) : null;
 }
