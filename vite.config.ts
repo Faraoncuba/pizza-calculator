@@ -7,6 +7,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        // Keep direct privacy-page navigations out of the calculator's SPA fallback.
+        navigateFallbackDenylist: [/^\/privacidad(?:\.html|\/|$)/]
+      },
       manifest: {
         name: 'Calculadora de Pizza',
         short_name: 'PizzaCalc',
